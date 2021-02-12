@@ -8,6 +8,7 @@ import {
 import Contacto from './components/Contacto';
 import Inicio from './components/Inicio';
 import Nosotros from './components/Nosotros';
+import Pokemon from './components/Pokemon';
 
 function App() {
   return (
@@ -26,6 +27,9 @@ function App() {
       </div>
       <hr />
       <Switch>
+        <Route path="/nosotros/:name">
+          <Pokemon/>
+        </Route>
       <Route path="/" exact>
           <Inicio/>
       </Route>
