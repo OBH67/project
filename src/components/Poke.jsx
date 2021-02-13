@@ -1,32 +1,46 @@
-import React from 'react'
-import {Link} from 'react-router-dom'
+import React from "react";
+
+import PokeApi from "../clases/pokeapi";
 
 const Poke = () => {
+    const [pokemon, setPokemon] = React.useState([]);
+    let pokeApi = new PokeApi();
 
-    const [pokemon, setPokemon] = React.useState([])
+    const [imagen, setImagen] = React.useState("");
     React.useEffect(() => {
-        obtenerDatos()
-    }, [])
+        obtenerDatos();
+    }, []);
 
     const obtenerDatos = async () => {
-        const data = await fetch('https://pokeapi.co/api/v2/pokemon?limit=15&offset=200')
-        const poke = await data.json()
-        setPokemon(poke.results)
-    }
+        let poke = await pokeApi.pagination(100, 900);
+        setPokemon(poke.results);
+    };
+    const onClick = async (event) => {
+        let url_pokemon = event.target.id;
+        let poke = await pokeApi.getPokemonInfo(url_pokemon);
+        pokemon.forEach((element) => {
+            if (element.url == url_pokemon) {
+                element.imagen = poke;
+            }
+        });
+        setImagen(poke);
+    };
+
     return (
         <div>
             <h1>Nosotros</h1>
             <ul>
-                {
-                    pokemon.map(item => (
-                        <li key={item.name}>                       
-                            <li>{item.name}</li>     
-                        </li>  
-                    ))                  
-                }
-            </ul>           
+                {pokemon.map((item) => (
+                    <li>
+                        <li onClick={onClick} id={item.url} key={item.name}>
+                            "Name:"{item.name}
+                            <img src={item.imagen}></img>
+                        </li>
+                    </li>
+                ))}
+            </ul>
         </div>
-    )
-}
+    );
+};
 
-export default Poke
+export default Poke;

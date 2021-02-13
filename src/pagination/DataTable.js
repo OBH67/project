@@ -1,48 +1,47 @@
 import React, { Component } from "react";
-import axios from "axios";
+import PokeApi from "../clases/pokeapi";
 
 const $ = require("jquery");
 require("datatables.net");
 
 export default class Tbl extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      users: [],
-      loading: true
-    };
-  }
+    constructor(props) {
+        super(props);
+        this.state = {
+            pokemons: [],
+            loading: true,
+        };
+    }
 
-  //option 1
-  async getUsersData() {
-    const res = await axios.get("https://jsonplaceholder.typicode.com/users");
-    console.log(res.data);
-    this.setState({ loading: false, users: res.data });
-  }
+    //option 1
+    async getPokemonsData() {
+        const pokeapi = new PokeApi();
+        const res = await pokeapi.pagination(20,1);
+        this.setState({ loading: true, pokemons: res.results });
+    }
 
-  componentDidMount() {
-    this.getUsersData().then(() => this.sync());
-  }
+    componentDidMount() {
+        this.getPokemonsData().then(() => this.sync());
+    }
 
-  sync() {
-    this.$el = $(this.el);
-    this.$el.DataTable({
-      data: this.state.users, 
-      columns: [
-        { title: "id", data: "id" },
-        { title: "Name", data: "name" },
-        { title: "Username", data: "username" }
-      ]
-    });
-  }
+    sync() {
+        this.$el = $(this.el);
+        this.$el.DataTable({
+            data: this.state.pokemons,
+            columns: [
+                { title: "name", data: "name" },
+                { title: "url", data: "url" },
+            ],
+        });
+    }
 
-  render() {
-    return (
-      <table
-        className="display"
-        width="100%"
-        ref={(el) => (this.el = el)}
-      ></table>
-    );
-  }
+    render() {
+        return (
+            <table
+                className="display hover"
+                width="100%"
+                ref={(el) => (this.el = el)}
+            ></table>
+        );
+    }
 }
