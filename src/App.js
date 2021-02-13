@@ -20,7 +20,7 @@ function App() {
         <Link to="/poke" className="btn btn-dark">
           Poke API
         </Link>
-        <Link to="/contacto" className="btn btn-dark">
+        <Link to="/datatable" className="btn btn-dark">
           Data Table
         </Link>
       </div>
