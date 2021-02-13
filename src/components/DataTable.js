@@ -4,7 +4,7 @@ import axios from "axios";
 const $ = require("jquery");
 require("datatables.net");
 
-class Tbl extends Component {
+export default class Tbl extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -20,12 +20,6 @@ class Tbl extends Component {
     this.setState({ loading: false, users: res.data });
   }
 
-  /*option 2
-  async getUsersData1() {
-    const res = await axios.get("https://jsonplaceholder.typicode.com/users");
-    return res.data;
-  }*/
-
   componentDidMount() {
     this.getUsersData().then(() => this.sync());
   }
@@ -33,8 +27,7 @@ class Tbl extends Component {
   sync() {
     this.$el = $(this.el);
     this.$el.DataTable({
-      data: this.state.users, //option 1
-      // data: this.getUsersData1(), //option 2
+      data: this.state.users, 
       columns: [
         { title: "id", data: "id" },
         { title: "Name", data: "name" },
@@ -52,12 +45,4 @@ class Tbl extends Component {
       ></table>
     );
   }
-}
-
-export default function DataTable() {
-  return (
-    <div>
-      <Tbl />
-    </div>
-  );
 }

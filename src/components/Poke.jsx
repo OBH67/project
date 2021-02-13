@@ -1,7 +1,7 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
 
-const Nosotros = () => {
+const Poke = () => {
 
     const [pokemon, setPokemon] = React.useState([])
     React.useEffect(() => {
@@ -13,7 +13,6 @@ const Nosotros = () => {
         const poke = await data.json()
         setPokemon(poke.results)
     }
-
     return (
         <div>
             <h1>Nosotros</h1>
@@ -32,4 +31,4 @@ const Nosotros = () => {
     )
 }
 
-export default Nosotros
+export default Poke

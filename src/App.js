@@ -5,10 +5,9 @@ import {
   Route,
   Link
 } from "react-router-dom";
-import Contacto from './components/Contacto';
+import Poke from './components/Poke';
+import Tbl from './components/DataTable';
 import Inicio from './components/Inicio';
-import Nosotros from './components/Nosotros';
-import Pokemon from './components/Pokemon';
 
 function App() {
   return (
@@ -18,7 +17,7 @@ function App() {
         <Link to="/" className="btn btn-dark">
           Inicio
         </Link>
-        <Link to="/nosotros" className="btn btn-dark">
+        <Link to="/poke" className="btn btn-dark">
           Poke API
         </Link>
         <Link to="/contacto" className="btn btn-dark">
@@ -27,17 +26,14 @@ function App() {
       </div>
       <hr />
       <Switch>
-        <Route path="/nosotros/:name">
-          <Pokemon/>
-        </Route>
       <Route path="/" exact>
           <Inicio/>
       </Route>
-        <Route path="/contacto">
-          <Contacto/>
+        <Route path="/poke">
+          <Poke/>
         </Route>
-        <Route path="/nosotros">
-          <Nosotros/>
+        <Route path="/datatable">
+         <Tbl/>
         </Route>
       </Switch>
     </div>
