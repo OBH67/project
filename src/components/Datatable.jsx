@@ -1,5 +1,5 @@
 import React from 'react'
-import Tbl from '../clases/DataTable'
+import Tbl from '../pagination/DataTable'
 
 const Datatable = () => {
     return (
