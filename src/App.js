@@ -6,8 +6,8 @@ import {
   Link
 } from "react-router-dom";
 import Poke from './components/Poke';
-import Tbl from './components/DataTable';
 import Inicio from './components/Inicio';
+import Datatable from './components/Datatable';
 
 function App() {
   return (
@@ -33,7 +33,7 @@ function App() {
           <Poke/>
         </Route>
         <Route path="/datatable">
-         <Tbl/>
+          <Datatable/>         
         </Route>
       </Switch>
     </div>

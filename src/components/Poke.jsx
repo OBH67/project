@@ -19,10 +19,8 @@ const Poke = () => {
             <ul>
                 {
                     pokemon.map(item => (
-                        <li key={item.name}>
-                        <Link to={`/pokemon/${item.name}`}>
-                            <li>{item.name}</li>
-                        </Link>        
+                        <li key={item.name}>                       
+                            <li>{item.name}</li>     
                         </li>  
                     ))                  
                 }
