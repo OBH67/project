@@ -9,7 +9,7 @@ const Nosotros = () => {
     }, [])
 
     const obtenerDatos = async () => {
-        const data = await fetch('https://pokeapi.co/api/v2/pokemon?limit=2&offset=200')
+        const data = await fetch('https://pokeapi.co/api/v2/pokemon?limit=15&offset=200')
         const poke = await data.json()
         setPokemon(poke.results)
     }

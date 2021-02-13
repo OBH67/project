@@ -19,10 +19,10 @@ function App() {
           Inicio
         </Link>
         <Link to="/nosotros" className="btn btn-dark">
-          Nosotros
+          Poke API
         </Link>
         <Link to="/contacto" className="btn btn-dark">
-          Contacto
+          Data Table
         </Link>
       </div>
       <hr />

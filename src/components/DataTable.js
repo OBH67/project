@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 
 const $ = require("jquery");
-require("datatables.net")(window, $);
+require("datatables.net");
 
 class Tbl extends Component {
   constructor(props) {
@@ -13,11 +13,18 @@ class Tbl extends Component {
     };
   }
 
-  //option 2
+  //option 1
+  async getUsersData() {
+    const res = await axios.get("https://jsonplaceholder.typicode.com/users");
+    console.log(res.data);
+    this.setState({ loading: false, users: res.data });
+  }
+
+  /*option 2
   async getUsersData1() {
     const res = await axios.get("https://jsonplaceholder.typicode.com/users");
     return res.data;
-  }
+  }*/
 
   componentDidMount() {
     this.getUsersData().then(() => this.sync());
@@ -26,13 +33,12 @@ class Tbl extends Component {
   sync() {
     this.$el = $(this.el);
     this.$el.DataTable({
-      data: this.getUsersData1(), //option 2
+      data: this.state.users, //option 1
+      // data: this.getUsersData1(), //option 2
       columns: [
+        { title: "id", data: "id" },
         { title: "Name", data: "name" },
-        { title: "Username", data: "username" },
-        { title: "Email", data: "email" },
-        { title: "Phone", data: "phone" },
-        { title: "Website", data: "website" }
+        { title: "Username", data: "username" }
       ]
     });
   }
@@ -51,8 +57,6 @@ class Tbl extends Component {
 export default function DataTable() {
   return (
     <div>
-      <h1>Hello CodeSandbox</h1>
-      <h2>Start editing to see some magic happen!</h2>
       <Tbl />
     </div>
   );
