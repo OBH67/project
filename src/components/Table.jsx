@@ -3,7 +3,8 @@ import React from 'react'
 function Data() {
 $(`#example`).DataTable();
 return(
-    <table id="example" class="display" style="width:100%">
+    <div>
+         <table id="example" class="display" style="width:100%">
           <thead>
             <tr>
                 <th>Name</th>
@@ -83,6 +84,7 @@ return(
             </tr>
         </tfoot>
     </table>
+    </div>
 )
 }
 

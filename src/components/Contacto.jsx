@@ -1,11 +1,12 @@
 import React from 'react'
-import DataTable from './DataTable'
+import Data from './Table'
+
 
 const Contacto = () => {
     return (
         <div>
             <h1>Contacto</h1>          
-            <DataTable />  
+            <Data />
         </div>
     )   
   }
